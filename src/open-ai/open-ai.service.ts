@@ -28,8 +28,10 @@ export class OpenAiService {
     });
 
     const response = await this.openai.chat.completions.create({
-      model: 'gpt-4o-2024-05-13',
+      model: chatDto.model,
       messages,
+      max_tokens: chatDto.maxTokens,
+      temperature: chatDto.temperature,
     });
 
     return new ChatResponseDto(response.choices[0].message.content);
