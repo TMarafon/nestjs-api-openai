@@ -28,7 +28,7 @@ export class OpenAiService {
     });
 
     const response = await this.openai.chat.completions.create({
-      model: 'gpt-4o',
+      model: 'gpt-4o-2024-05-13',
       messages,
     });
 
