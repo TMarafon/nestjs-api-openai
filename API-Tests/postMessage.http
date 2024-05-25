@@ -1,0 +1,11 @@
+POST http://localhost:3000/open-ai/chat
+Content-Type: application/json
+
+{
+    "messages": [{
+        "content": "What is the capital of France?",
+        "role": "user"
+    }],
+    "maxTokens":200,
+    "temperature": 0.8
+}
