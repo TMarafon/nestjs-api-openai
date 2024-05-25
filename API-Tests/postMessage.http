@@ -7,5 +7,5 @@ Content-Type: application/json
         "role": "user"
     }],
     "maxTokens":200,
-    "temperature": 0.8
+    "temperature": 0.8  
 }
