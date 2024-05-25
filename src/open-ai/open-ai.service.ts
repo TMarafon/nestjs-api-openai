@@ -3,6 +3,8 @@ import { ChatDto } from './dto/chat.dto';
 import { ChatResponseDto } from './dto/chat.response.dto';
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class OpenAiService {
@@ -35,6 +37,19 @@ export class OpenAiService {
     });
 
     return new ChatResponseDto(response.choices[0].message.content);
+  }
+
+  // method that receives a chatDto, processes the inference, and returns audio
+  async chatAudio(chatDto: ChatDto): Promise<any> {
+    const speechFile = path.resolve('./speech.mp3');
+    const response = await this.chat(chatDto);
+    const audioResponse = await this.openai.audio.speech.create({
+      model: 'tts-1',
+      voice: 'alloy',
+      input: response.message,
+    });
+    const buffer = Buffer.from(await audioResponse.arrayBuffer());
+    await fs.promises.writeFile(speechFile, buffer);
   }
 
   // method to list all the available models

@@ -14,6 +14,11 @@ export class OpenAiController {
     return this.openAiService.chat(chatDto);
   }
 
+  @Post('chat-audio')
+  async chatAudio(@Body() chatDto: ChatDto): Promise<ChatResponseDto> {
+    return this.openAiService.chatAudio(chatDto);
+  }
+
   // Get end-point to list all the available models
   @Get('models')
   async models(): Promise<any> {
