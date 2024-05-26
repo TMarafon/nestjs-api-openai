@@ -1,0 +1,18 @@
+POST http://localhost:3000/llama3/chat
+Content-Type: application/json
+
+{
+    "messages": [
+        {
+            "content": "You are an amazing assistant. You only answer in Portuguese.",
+            "role": "system"
+        },
+        {
+            "content": "If you could see, what would you like to see?",
+            "role": "user"
+        }
+    ],
+    "maxTokens":200,
+    "temperature": 0.8,
+    "model": "LM Studio Community/Meta-Llama-3-8B-Instruct-GGUF/Meta-Llama-3-8B-Instruct-Q4_K_M.gguf"
+}
